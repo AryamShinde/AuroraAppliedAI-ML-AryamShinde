@@ -6,7 +6,6 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     autoDeploy: true
-    autoDeploy: true
     healthCheckPath: /health
     envVars:
       - key: OPENAI_API_KEY
