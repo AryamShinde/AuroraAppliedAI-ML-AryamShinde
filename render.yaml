@@ -1,11 +1,11 @@
 services:
   - type: web
     name: aurora-member-qa
-    env: python
-    pythonVersion: 3.11
+    # Use Docker instead of native Python to avoid any env mismatches
+    env: docker
     plan: free
-    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: uvicorn qa_app:app --host 0.0.0.0 --port $PORT
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
     autoDeploy: true
     healthCheckPath: /health
     envVars:
