@@ -16,4 +16,6 @@ COPY qa_app.py ./
 # Expose runtime port (Render sets $PORT; fallback 8000 locally)
 EXPOSE 8000
 
-CMD ["python", "-m", "uvicorn", "qa_app:app", "--host", "0.0.0.0", "--port", "8000"]
+# Use the PORT provided by Render/Heroku-style platforms, default to 8000 locally
+ENV PORT=8000
+CMD ["sh", "-c", "python -m uvicorn qa_app:app --host 0.0.0.0 --port ${PORT}"]
