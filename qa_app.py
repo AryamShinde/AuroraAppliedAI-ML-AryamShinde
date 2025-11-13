@@ -49,6 +49,16 @@ async def health() -> dict:
     return {"status": "healthy", "service": "Member QA (Clean)"}
 
 
+@app.get("/")
+async def root() -> dict:
+    """Simple landing endpoint so base URL doesn't 404."""
+    return {
+        "service": "Member QA (Clean)",
+        "message": "Welcome. Use POST /ask with {'question': '...'} or see /docs.",
+        "endpoints": {"health": "/health", "ask": "/ask", "docs": "/docs"},
+    }
+
+
 async def fetch_messages_data() -> dict:
     """Fetch messages JSON from the public API and return the parsed JSON dict."""
     try:
