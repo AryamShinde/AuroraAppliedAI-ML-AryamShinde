@@ -65,7 +65,9 @@ async def fetch_messages_data() -> dict:
         async with httpx.AsyncClient(timeout=30.0, follow_redirects=True) as client:
             resp = await client.get(MESSAGES_API_URL)
             resp.raise_for_status()
-            return resp.json()
+            json_response = resp.json()
+            print(json_response)
+            return json_response
     except httpx.HTTPError as e:
         raise HTTPException(status_code=502, detail=f"Upstream messages API error: {e}")
 
